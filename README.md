@@ -2,7 +2,7 @@ MusicLibraryChecker
 ===================
 [![Build Status](https://travis-ci.org/christofluethi/MusicLibraryChecker.svg?branch=master)](https://travis-ci.org/christofluethi/MusicLibraryChecker)
 
-Command line tool to check a given music library folder for consistency
+Simple command line tool to check your music library
 
 ## Music Library Format
 The LibraryChecker needs the following specific directory structure:
