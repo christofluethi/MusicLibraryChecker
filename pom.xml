@@ -19,6 +19,7 @@
 		<junit.version>4.10</junit.version>
 		<log4j.version>2.1</log4j.version>
 		<mp3agic.version>0.8.3</mp3agic.version>
+		<commons.io.version>2.1</commons.io.version>
 	</properties>
 
 	<dependencies>
@@ -44,6 +45,11 @@
 			<version>${mp3agic.version}</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons.io.version}</version>
+    	</dependency>
 	</dependencies>
 
 
@@ -63,7 +69,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>ch.shaped.mp3.ID3v2ArtworkChecker</mainClass>
+							<mainClass>ch.shaped.mp3.CheckLibrary</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
