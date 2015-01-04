@@ -1,0 +1,6 @@
+version: 1.0
+logLevel: info
+checks:
+    - ArtworkCheck
+    - ID3v2TagCheck
+    - TrackNumberCheck

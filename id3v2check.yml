@@ -1,0 +1,4 @@
+version: 1.0
+logLevel: debug
+checks:
+    - ID3v2TagCheck
