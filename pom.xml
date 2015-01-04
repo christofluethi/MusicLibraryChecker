@@ -14,7 +14,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<javaVersion>1.8</javaVersion>
+		<javaVersion>1.7</javaVersion>
 		<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
 		<junit.version>4.10</junit.version>
 		<log4j.version>2.1</log4j.version>
