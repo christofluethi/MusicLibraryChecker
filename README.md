@@ -4,6 +4,16 @@ MusicLibraryChecker
 
 Command line tool to check a given music library folder for consistency
 
+## Music Library Format
+The LibraryChecker needs the following specific directory structure:
+
+```
+%{artist} - %{album}/%{track} %{artist} - %{title}
+```
+
+there is no artist folder (note for iTunes compatibility).
+
+
 ## How to use it
 
  ```
@@ -20,4 +30,6 @@ java -jar MusicLibraryChecker.jar ~/MusicLibrary/
 ```
   
 ## Available Checks
-* Artwork Check - Check if every file has the id3 cover tag set
+* ArtworkCheck - Check if every file has the id3 cover tag set
+* TrackNumberCheck - Check if every file has the tracknumbers set
+* ID3v2Check - Check if every file has the id3v2 tags set
