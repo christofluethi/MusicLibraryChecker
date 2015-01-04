@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 
 	<name>MP3 Music Library Checker</name>
-	<url>shaped.ch mp3 music library checker</url>
+	<description>shaped.ch mp3 music library checker</description>
 	<url>http://www.shaped.ch</url>
 
 
