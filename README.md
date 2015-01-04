@@ -13,11 +13,26 @@ The LibraryChecker needs the following specific directory structure:
 
 there is no artist folder (note for iTunes compatibility).
 
+## Configuration
+use a yaml configuration file to configure the checks to be run. 
+
+A sample configuration looks like this:
+
+```yaml
+version: 1.0
+logLevel: info
+checks:
+    - ArtworkCheck
+    - ID3v2TagCheck
+    - TrackNumberCheck
+```
+
+You have to list the LibraryChecks which should be run in the checks section.
 
 ## How to use it
 
  ```
-java -jar MusicLibraryChecker.jar ~/MusicLibrary/
+java -jar MusicLibraryChecker.jar config.yml ~/MusicLibrary/
 
 03:11:18.431 [main] INFO  ch.shaped.mp3.CheckLibrary - class ch.shaped.mp3.CheckLibrary started...
 03:11:18.442 [main] INFO  ch.shaped.mp3.CheckLibrary - Your music library contains 875 albums
