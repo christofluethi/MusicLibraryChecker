@@ -39,7 +39,13 @@ public class ArtworkCheck extends AbstractLibraryCheck {
 									logger.trace(item.getName() +" has no Album Artwork set");
 									return CheckState.FAIL;
 								}
+							} else {
+								/* no id3v2 - no album artwork */
+								return CheckState.FAIL;
 							}
+						} else {
+							/* no id3v2 - no album artwork */
+							return CheckState.FAIL;
 						}
 					} catch (UnsupportedTagException e) {
 						logger.debug(item.getName() +" UnsupportedTagException");

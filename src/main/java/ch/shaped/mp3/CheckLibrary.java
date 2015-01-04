@@ -9,7 +9,9 @@ import org.apache.logging.log4j.Logger;
 
 import ch.shaped.mp3.check.ArtworkCheck;
 import ch.shaped.mp3.check.CheckState;
+import ch.shaped.mp3.check.ID3v2TagCheck;
 import ch.shaped.mp3.check.LibraryCheck;
+import ch.shaped.mp3.check.TrackNumberCheck;
 import ch.shaped.mp3.library.MP3LibraryAlbum;
 import ch.shaped.mp3.library.MP3LibraryItem;
 
@@ -85,6 +87,8 @@ public class CheckLibrary {
         	if(f.exists()) {
         		CheckLibrary checker = new CheckLibrary(f);
         		checker.addCheck(new ArtworkCheck());
+        		checker.addCheck(new TrackNumberCheck());
+        		checker.addCheck(new ID3v2TagCheck());
         		checker.run();
         	} else {
         		logger.error(CheckLibrary.class + " invalid source_path specified. File or Folder '"+ args[0] +"' does not exist");
