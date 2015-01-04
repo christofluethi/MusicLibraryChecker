@@ -33,6 +33,7 @@ public class ID3v2TagCheck implements LibraryCheck {
 						if(mp3file.hasId3v2Tag()) {
 							return CheckState.OK;
 						} else {
+							logger.debug("No ID3v2 tag for: "+album.getName()+"/"+f.getName());
 							return CheckState.FAIL;
 						}
 					} catch (UnsupportedTagException e) {

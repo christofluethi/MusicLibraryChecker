@@ -20,6 +20,7 @@
 		<log4j.version>2.1</log4j.version>
 		<mp3agic.version>0.8.3</mp3agic.version>
 		<commons.io.version>2.1</commons.io.version>
+		<sneakyaml.version>1.14</sneakyaml.version>
 	</properties>
 
 	<dependencies>
@@ -49,7 +50,12 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>${commons.io.version}</version>
-    	</dependency>
+		</dependency>
+		<dependency>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
+			<version>${sneakyaml.version}</version>
+		</dependency>
 	</dependencies>
 
 

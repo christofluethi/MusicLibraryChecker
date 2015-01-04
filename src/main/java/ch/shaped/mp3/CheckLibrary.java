@@ -1,17 +1,24 @@
 package ch.shaped.mp3;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.config.Configuration;
+import org.apache.logging.log4j.core.config.LoggerConfig;
+import org.yaml.snakeyaml.Yaml;
 
-import ch.shaped.mp3.check.ArtworkCheck;
 import ch.shaped.mp3.check.CheckState;
-import ch.shaped.mp3.check.ID3v2TagCheck;
 import ch.shaped.mp3.check.LibraryCheck;
-import ch.shaped.mp3.check.TrackNumberCheck;
+import ch.shaped.mp3.config.CheckConfiguration;
 import ch.shaped.mp3.library.MP3LibraryAlbum;
 import ch.shaped.mp3.library.MP3LibraryItem;
 
@@ -79,32 +86,49 @@ public class CheckLibrary {
 	}
 	
     public static void main( String[] args ) {
-    	
         logger.info(CheckLibrary.class + " started...");
         
-        if(args.length > 0 && args[0].length() > 0) {
-        	File f = new File(args[0]);
+        if(args.length > 1 && args[0].length() > 0 && args[1].length() > 0) {
+        	File f = new File(args[1]);
         	if(f.exists()) {
         		CheckLibrary checker = new CheckLibrary(f);
-        		checker.addCheck(new ArtworkCheck());
-        		checker.addCheck(new TrackNumberCheck());
-        		checker.addCheck(new ID3v2TagCheck());
+        		Yaml yaml = new Yaml();  
+
+            	try {
+            		InputStream in = Files.newInputStream(Paths.get(args[0]));
+
+            		CheckConfiguration configuration = yaml.loadAs(in, CheckConfiguration.class);
+            		logger.info(configuration);
+            		String level = configuration.getLogLevel().toUpperCase();
+            		if(level != null && !level.isEmpty()) {
+            			LoggerContext ctx = (LoggerContext)LogManager.getContext(false);
+                		Configuration config = ctx.getConfiguration();
+                		LoggerConfig loggerConfig = config.getLoggerConfig(LogManager.ROOT_LOGGER_NAME); 
+                		loggerConfig.setLevel(Level.getLevel(level));
+                		ctx.updateLoggers(); 
+                		
+                		logger.info("Set LogLevel to "+level);
+            		}
+            		
+            		List<LibraryCheck> checks = configuration.getLibraryCheck();
+            		
+            		for (LibraryCheck libraryCheck : checks) {
+            			logger.info("Adding check "+libraryCheck.getName());
+						checker.addCheck(libraryCheck);
+					}
+            	} catch(IOException e) {
+            		logger.error(CheckLibrary.class + " invalid 'config' specified. File '"+ args[1] +"' does not exist");
+            	}
         		checker.run();
         	} else {
-        		logger.error(CheckLibrary.class + " invalid source_path specified. File or Folder '"+ args[0] +"' does not exist");
+        		logger.error(CheckLibrary.class + " invalid 'source_path' specified. File or Folder '"+ args[1] +"' does not exist");
         	}
         } else {
-        	 	logger.info(CheckLibrary.class + " need param source_path");
+        	 	logger.info(CheckLibrary.class + " need param 'config' and 'source_path'");
         }
     }
     
     public void addCheck(LibraryCheck lc) {
     	this.checks.add(lc);
     }
-    
-   /* public static <T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
-      List<T> list = new ArrayList<T>(c);
-      java.util.Collections.sort(list);
-      return list;
-    }*/
 }
