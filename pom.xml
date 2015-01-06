@@ -21,6 +21,7 @@
 		<mp3agic.version>0.8.3</mp3agic.version>
 		<commons.io.version>2.1</commons.io.version>
 		<sneakyaml.version>1.14</sneakyaml.version>
+		<guava.version>18.0</guava.version>
 	</properties>
 
 	<dependencies>
@@ -55,6 +56,11 @@
 			<groupId>org.yaml</groupId>
 			<artifactId>snakeyaml</artifactId>
 			<version>${sneakyaml.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
 		</dependency>
 	</dependencies>
 

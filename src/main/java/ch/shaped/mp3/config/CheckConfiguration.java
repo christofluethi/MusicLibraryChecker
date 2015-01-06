@@ -14,6 +14,7 @@ public class CheckConfiguration {
 	private String version;
 	private String logLevel;
 	private List<String> checks;
+	private String reportFile;
 	
 	public String getVersion() {
 		return version;
@@ -31,6 +32,14 @@ public class CheckConfiguration {
 		this.logLevel = loglevel;
 	}
 	
+	public String getReportFile() {
+		return reportFile;
+	}
+
+	public void setReportFile(String reportFile) {
+		this.reportFile = reportFile;
+	}
+
 	public List<String> getChecks() {
 		return checks;
 	}
@@ -47,7 +56,7 @@ public class CheckConfiguration {
 		
 		for (String s : this.checks) {
 			try {
-				String className = "ch.shaped.mp3.check."+s;
+				String className = "ch.shaped.mp3.check.impl."+s;
 				Class c = Class.forName(className);
 				LibraryCheck lc = (LibraryCheck)c.newInstance();
 				libchecks.add(lc);
@@ -64,6 +73,7 @@ public class CheckConfiguration {
 		return new StringBuilder()
 		  .append(String.format("Enabled checks: %s\n", checks))
 		  .append(String.format("log level: %s\n", logLevel))
+		  .append(String.format("report file: %s\n", reportFile))
 		  .toString();
 	}
 }

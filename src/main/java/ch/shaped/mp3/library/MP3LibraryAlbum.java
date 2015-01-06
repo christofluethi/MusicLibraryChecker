@@ -8,7 +8,7 @@ public class MP3LibraryAlbum {
 	protected File item;
 	protected List<MP3LibraryItem> childs = new ArrayList<MP3LibraryItem>();
 	protected String name;
-	
+
 	public MP3LibraryAlbum(String name, File item) {
 		this.name = name;
 		this.item = item;
