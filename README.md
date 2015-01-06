@@ -21,6 +21,7 @@ A sample configuration looks like this:
 ```yaml
 version: 1.0
 logLevel: info
+reportFile: ~/library-report.txt
 checks:
     - ArtworkCheck
     - ID3v2TagCheck
@@ -29,19 +30,35 @@ checks:
 
 You have to list the LibraryChecks which should be run in the checks section.
 
-## How to use it
+## Reporting
+
+If you add the reportFile config a full report containing all failed items will be written.
+
+The report looks like this:
 
  ```
-java -jar MusicLibraryChecker.jar config.yml ~/MusicLibrary/
+Gspraechstoff - Hoebeler EP
+------------------------------------------------------------------
+ 	      Check      State File
+       ArtworkCheck       FAIL CD.m3u
+      ID3v2TagCheck       FAIL CD.m3u
+   TrackNumberCheck       FAIL 01 Intro1.mp3
+   TrackNumberCheck       FAIL 02 Intro2.mp3
 
-03:11:18.431 [main] INFO  ch.shaped.mp3.CheckLibrary - class ch.shaped.mp3.CheckLibrary started...
-03:11:18.442 [main] INFO  ch.shaped.mp3.CheckLibrary - Your music library contains 875 albums
-03:11:18.442 [main] INFO  ch.shaped.mp3.CheckLibrary - Processed 0/875
-03:11:18.442 [main] ERROR ch.shaped.mp3.CheckLibrary - Item .DS_Store is a file. Directory expected.
-03:11:18.442 [main] ERROR ch.shaped.mp3.CheckLibrary - Item .iTunes Preferences.plist is a file. Directory expected.
-03:11:18.687 [main] ERROR ch.shaped.mp3.CheckLibrary - ArtworkCheck failed for album 2 Unlimited - No Limits
-03:11:20.078 [main] INFO  ch.shaped.mp3.CheckLibrary - Processed 10/875
+ Billboard - Hot 100 Songs 2013
+------------------------------------------------------------------
+              Check      State File
+
 ...
+ ```
+
+## How to use it
+Start the utility from commandline using the following command
+
+ ```
+ java -jar MusicLibraryChecker.jar albumart.yml ~/MusicLibrary/
+ Your MusicLibrary contains 87 albums
+ Progress [=============                                     ]   24.05%     320 tracks found in 21 albums    
 ```
   
 ## Available Checks
