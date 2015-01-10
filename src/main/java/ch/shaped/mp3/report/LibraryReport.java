@@ -78,12 +78,18 @@ public class LibraryReport {
 		StringBuffer sb = new StringBuffer();
 		
 		for (MP3LibraryAlbum album : this.getAlbums()) {
-			sb.append("\n"+album.getName()+"\n------------------------------------------------------------------\n");
-			sb.append(String.format(FORMAT, "Check", "State", "File"));
+			boolean printHead = true;
 
 			List<CheckReport> reports = this.getReportForAlbum(album);
 			for (CheckReport checkReport : reports) {
 				List<MP3LibraryItem> itemsFail = checkReport.getFail();
+				
+				if(printHead && (itemsFail.size() > 0 || !failOnly)) {
+					sb.append("\n"+album.getName()+"\n------------------------------------------------------------------\n");
+					sb.append(String.format(FORMAT, "Check", "State", "File"));
+					printHead = false;
+				}
+			
 				for (MP3LibraryItem mp3LibraryItem : itemsFail) {
 					sb.append(String.format(FORMAT, checkReport.getName(), "FAIL", mp3LibraryItem.getItem().getName()));
 				}

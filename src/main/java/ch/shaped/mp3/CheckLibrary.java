@@ -1,6 +1,7 @@
 package ch.shaped.mp3;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
@@ -34,6 +35,12 @@ public class CheckLibrary {
 	private File source;
 	private LibraryReport libraryReport;
 	
+	FileFilter directoryFilter = new FileFilter() {
+		public boolean accept(File file) {
+			return file.isDirectory();
+		}
+	};
+	
 	public CheckLibrary(File source) {
 		this.source = source;
 	}
@@ -47,7 +54,7 @@ public class CheckLibrary {
 	}
 	
 	public void run() {
-		File[] albums = this.source.listFiles();
+		File[] albums = this.source.listFiles(directoryFilter);
 		int processed = 0;
 		int files = 0;
 		if(albums != null) {

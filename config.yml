@@ -1,7 +1,6 @@
 version: 1.0
-logLevel: info
-reportFile: /tmp/musicLibraryReport.txt
+logLevel: debug
+reportFile: /Users/shaped/Desktop/mp3report.txt
 checks:
-    - ArtworkCheck
     - ID3v2TagCheck
     - TrackNumberCheck

@@ -63,8 +63,6 @@
 			<version>${guava.version}</version>
 		</dependency>
 	</dependencies>
-
-
 	<build>
 		<plugins>
 			<plugin>
