@@ -1,6 +1,6 @@
 version: 1.0
 logLevel: debug
-reportFile: /Users/shaped/Desktop/mp3report.txt
+reportFile: /tmp/mp3report.txt
 checks:
     - ID3v2TagCheck
     - TrackNumberCheck
